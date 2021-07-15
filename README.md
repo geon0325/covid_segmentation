@@ -4,7 +4,14 @@ Source code for the paper [Simple Epidemic Models with Segmentation Can Be Bette
 ## Datasets
 * The original datasets are available [here](https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset).
 * The processed datasets are available in [data folder](https://github.com/geonlee0325/covid_segmentation/tree/main/data).
- 
+
+## Requirements
+To properly run the code, please install following required packages via:
+```setup
+pip install pykalman
+pip install lmfit
+```
+
 ## Running Demo
 * For LLD and NLLD models, you can set the latent value (k) at line 21 in [nlds.py](https://github.com/geonlee0325/covid_segmentation/blob/main/code/nlds.py).
 * You can run by excuting:
@@ -25,4 +32,4 @@ Source code for the paper [Simple Epidemic Models with Segmentation Can Be Bette
 10. Fitting with SIR (incrementatl segmentation)
 ```
 ## Contact Information
-If you have any questions, please contact [Geon Lee](geonlee0325@kaist.ac.kr).
+If you have any questions, please contact [Geon Lee](https://geonlee0325.github.io/).
