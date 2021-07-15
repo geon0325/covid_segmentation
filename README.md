@@ -1,5 +1,5 @@
 # Simple Epidemic Models with Segmentation Can Be Betterthan Complex Ones
-Source code for the paper [Simple Epidemic Models with Segmentation Can Be Betterthan Complex Ones], Geon Lee, Se-eun Yoon, Kijung Shin.
+Source code for the paper [Simple Epidemic Models with Segmentation Can Be Betterthan Complex Ones](https://github.com/geonlee0325/covid_segmentation/edit/main/), Geon Lee, Se-eun Yoon, Kijung Shin.
 
 We propose **Hypergraph Motifs (h-motifs)**, whose occurrences capture local structural patterns of real-world hypergraphs.
 
