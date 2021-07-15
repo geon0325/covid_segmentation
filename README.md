@@ -7,30 +7,13 @@ Source code for the paper [Simple Epidemic Models with Segmentation Can Be Bette
  
 ## Running Demo
 * For LLD and NLLD models, you can set the latent value (k) at line 21 in [nlds.py](https://github.com/geonlee0325/covid_segmentation/blob/main/code/nlds.py).
-* You can run by
+* You can run by excuting:
 ```setup
 ./run.sh
 ```
-* aaa
-You can run demo with the sample dataset (dblp_graph.txt).
-1. To run **MoCHy-E**, type 'run_exact.sh'.
-2. To run *parallelized* **MoCHy-E**, type 'run_exact_par.sh'.
-3. To run **MoCHy-A**, type 'run_approx_ver1.sh'.
-4. To run **MoCHy-A+**, type 'run_approx_ver2.sh'.
-5. To run *parallelized* **MoCHy-A+**, type 'run_approx_ver2_par.sh'.
-6. To run *memory-bounded* **MoCHy-A+**, type 'run_approx_ver2_memory.sh'.
-
-## Terms and Conditions
-If you use this code as part of any published research, please acknowledge our VLDB 2020 paper.
-```
-@article{lee2020hypergraph,
-  title={Hypergraph Motifs: Concepts, Algorithms, and Discoveries},
-  author={Lee, Geon and Ko, Jihoon and Shin, Kijung},
-  journal={Proceedings of the VLDB Endowment},
-  year={2020},
-  publisher={VLDB Endowment}
-}
-```
+* There are 10 different *runtype*s:
+1. ddd
+2. 2sss
 
 ## Contact Information
 If you have any questions, please contact [Geon Lee](geonlee0325@kaist.ac.kr).
