@@ -11,7 +11,7 @@ import learn_sir
 
 def str2bool(v):
     if isinstance(v, bool):
-       return v
+        return v
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
         return True
     elif v.lower() in ('no', 'false', 'f', 'n', '0'):
@@ -24,10 +24,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     #-----------------------------------#
     parser.add_argument("-s",  "--seqfn", type=str, help="input seqs filename")
-    parser.add_argument("-o",  "--outdir",type=str, help="output dir")
-    parser.add_argument("-t",  "--runtype",type=int, help="run type")
+    parser.add_argument("-o",  "--outdir", type=str, help="output dir")
+    parser.add_argument("-t",  "--runtype", type=int, help="run type")
     parser.add_argument("-d",  "--depth", type=int, help="depth (top-down)")
     parser.add_argument("-e",  "--errRAT", type=float, help="error ratio")
+    parser.add_argument("-k",  "--k", type=int, help="latent dimension")
     parser.add_argument("-lf", "--linearFit", type=str2bool, help="linear fit")
 
     #-----------------------------------#
@@ -35,6 +36,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         parser.print_help()
     #-----------------------------------#
+    
     #--- check sequencefn ---#
     if(args.seqfn!=None):
         seqfn = args.seqfn
@@ -54,6 +56,11 @@ if __name__ == "__main__":
     if(args.linearFit!=None):
         linearFit = args.linearFit
     else: parser.print_help()
+    #--- check linear fit ---#
+    if(args.k!=None):
+        k = args.k
+    else: parser.print_help()
+        
     #-----------------------------------#
     tl.comment("COVID TF")
     #-----------------------------------#
@@ -73,28 +80,25 @@ if __name__ == "__main__":
     # start COVID TF 
     #-----------------------------------#
     if runtype == 1:
-        learn_nl.fit_data(data, outdir, linearFit, mean, std)
+        learn_nl.fit_data(data, outdir, linearFit, mean, std, k)
     elif runtype == 2:
-        learn_nl.forecast_data(data, outdir, linearFit, mean, std)
+        learn_nl.fit_data_single(data, outdir, linearFit, mean, std, k)
     elif runtype == 3:
-        learn_nl.fit_data_inc(data, outdir, errRAT, linearFit, mean, std)
+        learn_nl.fit_data_inc(data, outdir, errRAT, linearFit, mean, std, k)
     elif runtype == 4:
-        learn_nl.fit_data_single(data, outdir, linearFit, mean, std)
+        learn_nl.forecast_data(data, outdir, linearFit, mean, std, k)
     elif runtype == 5:
-        learn_nl.forecast_data_single(data, outdir, linearFit, mean, std)
+        learn_nl.forecast_data_single(data, outdir, linearFit, mean, std, k)
     elif runtype == 6:
         learn_sir.fit_sir(data, outdir)
     elif runtype == 7:
-        learn_sir.forecast_sir(data, outdir)
-    elif runtype == 8:
         learn_sir.fit_sir_single(data, outdir)
-    elif runtype == 9:
-        learn_sir.forecast_sir_single(data, outdir)
-    elif runtype == 10:
+    elif runtype == 8:
         learn_sir.fit_sir_inc(data, outdir, errRAT)
+    elif runtype == 9:
+        learn_sir.forecast_sir(data, outdir)
+    elif runtype == 10:
+        learn_sir.forecast_sir_single(data, outdir)
     #-----------------------------------#
 
     sys.exit(0);
-
-
-
