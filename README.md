@@ -6,31 +6,34 @@ Source code for the paper [Simple Epidemic Models with Segmentation Can Be Bette
 * The processed datasets are available in [data folder](https://github.com/geonlee0325/covid_segmentation/tree/main/data).
 
 ## Requirements
-To properly run the code, please install following required packages via:
+To properly run the code, please install the following required packages via:
 ```setup
 pip install pykalman
 pip install lmfit
 ```
 
 ## Running Demo
-* You can run by excuting:
-```setup
-./run.sh
-```
 * There are 10 different *runtype*s which can be set in [run.sh](https://github.com/geonlee0325/covid_segmentation/blob/main/code/run.sh):
 ```setup
 1. Fitting using LLD/NLLD (our segmentation scheme)
-2. Forecasting using LLD/NLLD (our segmentation scheme)
+2. Fitting using LLD/NLLD (single segmentation)
 3. Fitting using LLD/NLLD (incremental segmentation)
-4. Fitting using LLD/NLLD (single segmentation)
+4. Forecasting using LLD/NLLD (our segmentation scheme)
 5. Forecasting using LLD/NLLD (single segmentation)
 6. Fitting with SIR (our segmentation scheme)
-7. Forecasting with SIR (our segmentation scheme)
-8. Fitting with SIR (single segmentation)
-9. Forecasting with SIR (single segmentation)
-10. Fitting with SIR (incrementatl segmentation)
+7. Fitting with SIR (single segmentation)
+8. Fitting with SIR (incremental segmentation)
+9. Forecasting with SIR (our segmentation scheme)
+10. Forecasting with SIR (single segmentation)
 ```
-* For LLD and NLLD models, the default latent value (k) is set to 2. You can set k at line 21 in [nlds.py](https://github.com/geonlee0325/covid_segmentation/blob/main/code/nlds.py).
+* For runtype 1, 2, 3, 4, and 5, execute:
+```setup
+./run.sh [runtype] [country] [output directory] [LLD or NLLD] [latent dimension k] [error rate (only for runtype 3)]
+```
+* For runtype 6, 7, 8, 9, and 10, execute:
+```setup
+./run.sh [runtype] [country] [output directory] [SIR] [error rate (only for runtype 8)]
+```
 
 ## Contact Information
 If you have any questions, please contact [Geon Lee](https://geonlee0325.github.io/).
