@@ -1,13 +1,5 @@
 #!/usr/bin/env python
-#------------------------------------------------------------#
-# Author:    Yasuko Matsubara 
-# Email:     yasuko@cs.kumamoto-u.ac.jp
-# URL:       http://www.cs.kumamoto-u.ac.jp/~yasuko/
-# Date:      2016-09-15
-#------------------------------------------------------------#
-# Copyright (C) 2015--2016 Yasuko Matsubara & Yasushi Sakurai
-# RegimeCast is freely available for non-commercial purposes
-#------------------------------------------------------------#
+
 import tool as tl
 import numpy as np
 from kf import KF
@@ -18,8 +10,7 @@ import time
 
 
 #-----------------------------------------#
-K=2                  # hidden variables k
-NTRIAL=2 #1          # number of trials (default: 1)
+NTRIAL=2           # number of trials (default: 1)
 ITER=2               # KF - em iter
 ITERe=20             # KF - em iter (each)
 BOUNDARY=tl.INF      # NLDS boundary
@@ -41,17 +32,19 @@ FULLSAVE=tl.NO
 #-----------------------------------------#
 
 class NLDS:
-    def __init__(self, data):
+    def __init__(self, data, K):
         if(DBG): tl.msg("NLDS")
         self.data=data
-        self.K=K
+        self.k=K
+        
     # model fit (nonlinear)
-    def fit(self, wtype, linearfit = False):
-        nlds = _fit_optk(self, wtype, linearfit)
+    def fit(self, wtype, linearfit=False):
+        nlds = _fit_optk(self, wtype, self.k, linearfit)
         return nlds 
+    
     # model fit (linear)
     def fit_lin(self, wtype):
-        return _fit_optk(self, wtype, True)
+        return _fit_optk(self, wtype, self.k, True)
 
     # specific model-fit 
     #fit.nl_fit(nlds, ftype, wtype, dps)
@@ -104,7 +97,7 @@ def _defunc(Sta0, de, A0, A1, A2, k):
     return de  
 #-----------------------------------------#
 
-def _fit_optk(nlds, wtype, linearfit=False):
+def _fit_optk(nlds, wtype, k, linearfit=False):
     data = nlds.data
     NLDSs = []; Errs = [];
     # for each k, estimate opt-params
@@ -112,7 +105,7 @@ def _fit_optk(nlds, wtype, linearfit=False):
         # init model (k)
         nlds_k = tl.dcopy(nlds)
         # linear fitting 
-        (nlds, err) = _fit_k_lin(nlds_k, K) 
+        (nlds, err) = _fit_k_lin(nlds_k, k) 
         NLDSs.append(nlds_k)
         Errs.append(err)
         if Errs[len(Errs)-2] < Errs[len(Errs)-1]: break
@@ -128,7 +121,7 @@ def _fit_k_lin(nlds, k, kf_i=[]):
     data = nlds.data
     # linear fit (KF)
     if(kf_i == []):
-        kf = KF(data,k) # without init params
+        kf = KF(data, k) # without init params
     else:
         kf = kf_i # with init params
     kf.em(ITER, ITERe) # em algorithm
@@ -281,13 +274,6 @@ def _plot(nlds, disp=False, nf=-1, fn=''):
     tl.plt.show(block=disp)
     if(disp!=True): tl.plt.close()
 
-    # save data (optional)
-    if(FULLSAVE):
-        tl.save_txt(data, fn+'_seq_data.txt')
-        tl.save_txt(Sta, fn+'_seq_Sta.txt')
-        tl.save_txt(Obs, fn+'_seq_Obs.txt')
-        tl.save_txt(ObsL, fn+'_seq_ObsL.txt')
-
 
 
 def _example1():
@@ -325,24 +311,6 @@ if __name__ == "__main__":
     toc = time.clock(); fittime= toc-tic;
     tl.comment("END LMfit")
     tl.msg("time: %f"%fittime)
-    
-    '''
-    print ("start LMfit")
-    DPS=1; niter=10
-    for iter in range(0,niter): 
-        tic = time.clock()
-        for iter2 in range(0,niter): 
-            nlds=nlds.fit_m0(wtype, DPS)
-            nlds=nlds.fit_A01(wtype, DPS)
-        nlds=nlds.fit_A2(wtype, DPS)
-        #
-        toc = time.clock(); fittime= toc-tic;
-        (Sta,Obs)=nlds.gen(); err=tl.RMSE(Obs,data)
-        print("time: %f, err=%f"%(fittime,err))
-    
-        nlds.plot()
-        nlds.save_obj()
-    '''
 
     tl.comment("plot/save model")
     nlds.save_obj()
