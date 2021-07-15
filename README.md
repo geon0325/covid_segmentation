@@ -13,7 +13,6 @@ pip install lmfit
 ```
 
 ## Running Demo
-* For LLD and NLLD models, you can set the latent value (k) at line 21 in [nlds.py](https://github.com/geonlee0325/covid_segmentation/blob/main/code/nlds.py).
 * You can run by excuting:
 ```setup
 ./run.sh
@@ -31,5 +30,7 @@ pip install lmfit
 9. Forecasting with SIR (single segmentation)
 10. Fitting with SIR (incrementatl segmentation)
 ```
+* For LLD and NLLD models, the default latent value (k) is set to 2. You can set k at line 21 in [nlds.py](https://github.com/geonlee0325/covid_segmentation/blob/main/code/nlds.py).
+
 ## Contact Information
 If you have any questions, please contact [Geon Lee](https://geonlee0325.github.io/).
