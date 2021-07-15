@@ -11,9 +11,11 @@ Source code for the paper [Simple Epidemic Models with Segmentation Can Be Bette
 ```setup
 ./run.sh
 ```
-* There are 10 different *runtype*s:
-1. ddd
-2. 2sss
-
+* There are 10 different *runtype*s which can be set in [run.sh](https://github.com/geonlee0325/covid_segmentation/blob/main/code/run.sh):
+```setup
+1. aaa
+2. bbb
+3. sss
+```
 ## Contact Information
 If you have any questions, please contact [Geon Lee](geonlee0325@kaist.ac.kr).
