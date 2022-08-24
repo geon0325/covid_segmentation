@@ -1,5 +1,6 @@
 # Simple Epidemic Models with Segmentation Can Be Better than Complex Ones
-Source code for the paper [Simple Epidemic Models with Segmentation Can Be Better than Complex Ones](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0262244), Geon Lee, Se-eun Yoon, Kijung Shin.
+Source code for the [PLOS ONE (2022)](https://journals.plos.org/plosone/) paper [Simple Epidemic Models with Segmentation Can Be Better than Complex Ones](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0262244), Geon Lee, Se-eun Yoon, Kijung Shin.
+This was also presented in [epiDAMIK workshop in KDD 2021](https://epidamik.github.io/2021/index.html).
 
 ## Datasets
 * The original datasets are available [here](https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset).
